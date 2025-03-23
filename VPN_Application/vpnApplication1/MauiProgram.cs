@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Components;
 
 namespace vpnApplication1
 {
+
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
@@ -16,12 +18,15 @@ namespace vpnApplication1
 
             builder.Services.AddMauiBlazorWebView();
 
+
+
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<VpnService>();
             return builder.Build();
         }
     }
+    
 }

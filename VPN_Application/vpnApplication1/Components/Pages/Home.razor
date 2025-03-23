@@ -1,5 +1,37 @@
-﻿@page "/"
+﻿
+@page "/"
+@inject VpnService Vpn
 
-<h1>Hello, world!</h1>
+@code {
+    protected override void OnInitialized()
+    {
+        Vpn.OnStatusChanged += StateHasChanged;
+    }
 
-Welcome to your new app.
+    public void Dispose()
+    {
+        Vpn.OnStatusChanged -= StateHasChanged;
+    }
+}
+
+
+<h3 class="text-center">VPN Приложение</h3>
+
+<div class="container text-center mt-4">
+    <p class="fw-bold">Статус: <span class="text-primary">@Vpn. StatusMessage</span></p>
+
+    <button class="btn btn-lg @(Vpn.IsConnected ? "btn-danger" : "btn-success")" @onclick="Vpn.ToggleConnection">
+        @Vpn.ButtonText
+    </button>
+
+    <div class="mt-3">
+        <label class="fw-bold">Выберите сервер:</label>
+        <select class="form-select w-50 mx-auto" @bind="Vpn.SelectedServer">
+            <option disabled selected>Выберите сервер</option>
+            @foreach (var server in Vpn.Servers)
+            {
+                <option value="@server">@server</option>
+            }
+        </select>
+    </div>
+</div>
