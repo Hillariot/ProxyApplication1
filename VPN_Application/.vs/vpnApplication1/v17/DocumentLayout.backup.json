@@ -1,12 +1,92 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|e:\\users\\12345\\source\\repos\\hillariot\\vpn_application\\vpn_application\\vpnapplication1\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|e:\\users\\12345\\source\\repos\\hillariot\\vpn_application\\vpn_application\\vpnapplication1\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|e:\\users\\12345\\source\\repos\\hillariot\\vpn_application\\vpn_application\\vpnapplication1\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|e:\\users\\12345\\source\\repos\\hillariot\\vpn_application\\vpn_application\\vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-26T08:29:52.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "vpnApplication1\\Components\\Pages\\Home.razor",
+              "ToolTip": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Pages\\Home.razor*",
+              "RelativeToolTip": "vpnApplication1\\Components\\Pages\\Home.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-26T08:29:14.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "vpnApplication1\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "vpnApplication1\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-26T08:27:40.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "vpnApplication1\\MauiProgram.cs",
+              "ToolTip": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\MauiProgram.cs",
+              "RelativeToolTip": "vpnApplication1\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-23T10:33:54.098Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

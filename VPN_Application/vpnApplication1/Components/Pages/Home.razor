@@ -15,10 +15,9 @@
 }
 
 
-<h3 class="text-center">VPN Приложение</h3>
+<h1 class="text-center">VPN Приложение</h1>
 
 <div class="container text-center mt-4">
-    <p class="fw-bold">Статус: <span class="text-primary">@Vpn. StatusMessage</span></p>
 
     <button class="btn btn-lg @(Vpn.IsConnected ? "btn-danger" : "btn-success")" @onclick="Vpn.ToggleConnection">
         @Vpn.ButtonText
