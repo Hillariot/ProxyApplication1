@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "54/RPUMAHYEuPBzMsQ9U5ktitYMQEErMtELVKSr89VE=",
+  "Hash": "s/19f/w8dKX0R9Zv5W8/8A4mCfOLKFU32m+omkADSzM=",
   "Source": "vpnApplication1",
   "BasePath": "/",
   "Mode": "Root",
@@ -10,17 +10,17 @@
     {
       "Name": "vpnApplication1\\wwwroot",
       "Source": "vpnApplication1",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css",
       "SourceId": "vpnApplication1",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\",
       "BasePath": "/",
       "RelativePath": "vpnApplication1.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css"
+      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css",
       "SourceId": "vpnApplication1",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\",
       "BasePath": "/",
       "RelativePath": "vpnApplication1.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
       "SourceId": "vpnApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\app.css"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "vpnApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "vpnApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\favicon.png",
       "SourceId": "vpnApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\index.html",
       "SourceId": "vpnApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "index.html",
       "AssetKind": "All",

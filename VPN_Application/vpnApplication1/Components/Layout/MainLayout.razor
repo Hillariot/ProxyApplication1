@@ -1,14 +1,119 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<style>
+    .animated-gradient {
+        min-height: 100vh;
+        color: white;
+        background: linear-gradient(-45deg, #0a0f4a, #1a3b91, #2596d1, #80d0ff);
+        background-size: 400% 400%;
+        animation: gradientMove 20s ease infinite;
+    }
 
+    @@keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .content {
+        padding-top: 2rem;
+    }
+
+    .fixed-help-box h4 {
+        font-size: 12px;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+
+    .help-toggle {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        width: 36px;
+        height: 36px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        border-radius: 10px; /* мягкие углы */
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .fixed-help-box {
+        position: fixed;
+        bottom: 56px;
+        left: 10px;
+        width: 360px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 15px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        font-size: 10px;
+        color: black;
+        z-index: 1000;
+        user-select: none;
+        border-radius: 10px; /* закругление окна справки */
+    }
+</style>
+
+<div class="animated-gradient">
     <main>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
+
+    <!-- Кнопка справки -->
+    <button class="help-toggle" @onclick="ToggleHelpBox">?</button>
+
+    <!-- Окно справки -->
+    @if (showHelp)
+    {
+        <div class="fixed-help-box">
+            <h4>Справка по приложению VPN-клиент</h4>
+            <p>
+                Добро пожаловать в VPN-клиент!<br />
+                Это приложение позволяет установить защищённое соединение с удалённым VPN-сервером для обеспечения безопасности и конфиденциальности в интернете.<br /><br />
+
+                <strong>Основные функции:</strong><br />
+                - Профиль — просмотр и настройка пользовательского профиля<br />
+                - Подключиться — установить VPN-соединение с сервером<br />
+                - Скорость — показать текущую скорость соединения<br />
+                - Справка — открыть данное окно помощи<br />
+                - Выход — закрыть приложение и отключиться от VPN<br /><br />
+
+                <strong>Часто задаваемые вопросы:</strong><br />
+                1. <strong>Как подключиться к VPN?</strong><br />
+                &nbsp;&nbsp;Нажмите правой кнопкой на иконке в трее, выберите «Подключиться».<br />
+                &nbsp;&nbsp;Если сервер доступен — соединение установится автоматически.<br /><br />
+
+                2. <strong>Как узнать текущую скорость соединения?</strong><br />
+                &nbsp;&nbsp;Нажмите «Скорость» в контекстном меню — появится всплывающее окно с информацией.<br /><br />
+
+                3. <strong>У меня возникли проблемы. Что делать?</strong><br />
+                &nbsp;&nbsp;Свяжитесь с поддержкой: <a href="mailto:hillariot2070@gmail.com">hillariot2070@gmail.com</a>
+            </p>
+        </div>
+
+    }
 </div>
+
+@code {
+    private bool showHelp = false;
+
+    private void ToggleHelpBox()
+    {
+        showHelp = !showHelp;
+    }
+}

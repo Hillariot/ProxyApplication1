@@ -14,12 +14,12 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vpnApplication1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c4868a8cf8270b93ba5fb7512350a9ed15b0928a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c142b43de9aba8a344eb0bd981d43e6a56833710")]
 [assembly: System.Reflection.AssemblyProductAttribute("vpnApplication1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vpnApplication1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("MacCatalyst17.5")]
-[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("MacCatalyst14.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("MacCatalyst17.5")]
 
 // Создано классом WriteCodeFragment MSBuild.
 
