@@ -2,54 +2,78 @@
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Text.Json;
 
 namespace vpnApplication1
 {
+    public class AuthResult
+    {
+        public bool Success { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+
 
     public class AuthService
     {
         private readonly HttpClient _httpClient = new();
 
-        public async Task<bool> LoginAsync(string email, string password)
-        {
-            var content = JsonContent.Create(new { email, password });
-            try
-            {
-                var response = await _httpClient.PostAsync("http://185.184.122.74:5000/auth_auth", content);
-                var json = await response.Content.ReadAsStringAsync();
-                return json.Contains("\"success\":true");
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public async Task<bool> RegisterAsync(string email, string password, string repeatPassword)
+        public async Task<AuthResult> RegisterAsync(string email, string password, string repeatPassword)
         {
             if (password != repeatPassword)
-                return false;
+                return new AuthResult { Success = false, ErrorMessage = "Passwords do not match" };
 
             if (!ValidateEmail(email) || !ValidatePassword(password))
-                return false;
+                return new AuthResult { Success = false, ErrorMessage = "Invalid email or password format" };
 
             var content = JsonContent.Create(new { email, password });
             try
             {
                 var response = await _httpClient.PostAsync("http://185.184.122.74:5001/auth_reg", content);
                 var json = await response.Content.ReadAsStringAsync();
-                return json.Contains("\"success\":true");
+
+                if (json.Contains("\"success\":true"))
+                    return new AuthResult { Success = false,ErrorMessage= "Пользователь уже зарегистрирован" };
+
+                if (json.Contains("email_sent"))
+                    return new AuthResult { Success = true };
+
+                return new AuthResult { Success = false, ErrorMessage = "Возникла неизвестная ошибка, повторите регистрацию позже или напишите на почту hillariot2070@gmail.com" };
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                return new AuthResult { Success = false, ErrorMessage = $"Network error: {ex.Message}" };
             }
         }
 
+
+        public async Task<AuthResult> LoginAsync(string email, string password)
+        {
+            var content = JsonContent.Create(new { email, password });
+            try
+            {
+                var response = await _httpClient.PostAsync("http://185.184.122.74:5000/auth_auth", content);
+                var json = await response.Content.ReadAsStringAsync();
+
+                if (json.Contains("\"success\":true"))
+                    return new AuthResult { Success = true };
+                if (json.Contains("\"error\":\"Email not confirmed\""))
+                    return new AuthResult { Success = false, ErrorMessage = "Please confirm your email first" };
+                if (json.Contains("Invalid credentials"))
+                    return new AuthResult { Success = false, ErrorMessage = "Invalid email or password" };
+
+                return new AuthResult { Success = false, ErrorMessage = "Unknown login error" };
+            }
+            catch (Exception ex)
+            {
+                return new AuthResult { Success = false, ErrorMessage = $"Network error: {ex.Message}" };
+            }
+        }
+
+
         private bool ValidateEmail(string email)
         {
-            var allowedDomains = new[] { "@gmail.com", "@yahoo.com", "@mail.ru", "@yandex.ru", "@outlook.com" };
-            return allowedDomains.Any(d => email.EndsWith(d, StringComparison.OrdinalIgnoreCase));
+            var regex = new Regex(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+            return regex.IsMatch(email);
         }
 
         private bool ValidatePassword(string password)
@@ -68,7 +92,13 @@ namespace vpnApplication1
         public string GetNetworkSpeed()
         {
             var interfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
-                .Where(i => i.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up);
+     .Where(i =>
+         i.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up &&
+         (i.Name.Contains("tap", StringComparison.OrdinalIgnoreCase) ||
+          i.Name.Contains("tun", StringComparison.OrdinalIgnoreCase) ||
+          i.Description.Contains("tap", StringComparison.OrdinalIgnoreCase) ||
+          i.Description.Contains("tun", StringComparison.OrdinalIgnoreCase) ||
+          i.Description.Contains("OpenVPN", StringComparison.OrdinalIgnoreCase)));
 
             ulong totalIn = 0, totalOut = 0;
             foreach (var ni in interfaces)
@@ -101,34 +131,12 @@ namespace vpnApplication1
                 return $"{bytesPerSec:F2} Б/с";
             }
 
-            return $"Входящий трафик: {Format(inSpeed)}\nИсходящий трафик: {Format(outSpeed)}";
+            return $"Входящий трафик (VPN): {Format(inSpeed)}\nИсходящий трафик (VPN): {Format(outSpeed)}";
+
         }
     }
 
 
-    public class HelpService
-    {
-        public string GetHelpMessage()
-        {
-            return """
-        Справка по приложению VPN-клиент
-
-        Это приложение позволяет установить защищённое соединение с удалённым VPN-сервером.
-
-        Основные функции:
-        - Профиль — просмотр и настройка учетной записи
-        - Подключиться — установить VPN-соединение
-        - Скорость — показать текущую скорость
-        - Справка — открыть эту справку
-        - Выход — завершить приложение
-
-        FAQ:
-        1. Как подключиться? — Нажмите "Подключиться".
-        2. Где скорость? — Нажмите "Скорость".
-        3. Проблемы? — Пишите: hillariot2070@gmail.com
-        """;
-        }
-    }
 
 
     public class VpnService
@@ -259,7 +267,6 @@ namespace vpnApplication1
             builder.Services.AddSingleton<VpnService>();
             builder.Services.AddSingleton<AuthService>();
             builder.Services.AddSingleton<NetworkSpeedService>();
-            builder.Services.AddSingleton<HelpService>();
             builder.Services.AddSingleton<NetworkSpeedService>();
 
 

@@ -4,7 +4,7 @@
 @inject NetworkSpeedService SpeedService
 
 
-<h1 class="text-center" style="user-select: none">VPN Приложение</h1>
+<h1 class="text-center" style="user-select: none">Barbaris VPN</h1>
 
 <div class="container mt-4 text-center">
 
@@ -25,13 +25,14 @@
             </div>
         }
 
-
-        <button class="btn btn-primary me-2" @onclick="HandleLoginOrRegister">
-            @(IsRegistering ? "Зарегистрироваться" : "Войти")
-        </button>
-        <button class="btn btn-secondary" @onclick="@(() => IsRegistering = !IsRegistering)">
-            @(IsRegistering ? "У меня есть аккаунт" : "Регистрация")
-        </button>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+            <button class="btn btn-primary" @onclick="HandleLoginOrRegister">
+                @(IsRegistering ? "Зарегистрироваться" : "Войти")
+            </button>
+            <button class="btn btn-secondary" @onclick="@(() => { IsRegistering = !IsRegistering; ErrorMessage = null; })">
+                @(IsRegistering ? "У меня есть аккаунт" : "Регистрация")
+            </button>
+        </div>
     }
     else
     {
@@ -55,8 +56,45 @@
                 @ErrorMessage
             </div>
         }
+        <button @onclick="Logout" class="logout-fab">
+            Выйти
+        </button>
 
+        <style>
+            .logout-fab {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                padding: 12px 20px;
+                font-size: 16px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                z-index: 1000;
+            }
 
+                .logout-fab:hover {
+                    background-color: #c0392b;
+                    transform: scale(1.05);
+                }
+
+                .logout-fab:active {
+                    transform: scale(0.95);
+                }
+        </style>
+
+    }
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        <div class="position-fixed bottom-0 start-50 translate-middle-x mb-4">
+            <label class="text-danger bg-opacity-75 bg-danger text-white p-2 rounded">
+                @ErrorMessage
+            </label>
+        </div>
     }
 </div>
 
@@ -89,20 +127,37 @@
     }
 
 
+        void Logout()
+        {
+            // Очистить данные
+            IsLoggedIn = false;
+            Email = "";
+            Password = "";
+            RepeatPassword = "";
+            IsRegistering = false;
+            ErrorMessage = null;
+        }
+
+
+
     private async Task HandleLoginOrRegister()
     {
-        bool success = IsRegistering
+        ErrorMessage = null;
+        AuthResult result = IsRegistering
             ? await Auth.RegisterAsync(Email, Password, RepeatPassword)
             : await Auth.LoginAsync(Email, Password);
 
-        if (success)
-        {
+if (result.Success)
+{
             IsLoggedIn = true;
-        }
-        else
-        {
-            await ShowError("Ошибка авторизации или регистрации.");
-        }
+}
+else
+{
+    // Показываем ошибку пользователю
+            await ShowError(result.ErrorMessage);
+}
+
+
     }
 
     private async Task ConnectToVpn()
@@ -122,12 +177,12 @@
     private async Task ShowError(string message)
     {
         ErrorMessage = message;
-        StateHasChanged(); // Принудительно отрисовать
+        StateHasChanged(); // Обновление UI
 
-        // Подождать 3 секунды и убрать сообщение
-        await Task.Delay(3000);
+        // Подождать 8 секунд и убрать сообщение
+        await Task.Delay(8000);
         ErrorMessage = null;
-        await InvokeAsync(StateHasChanged);
+        StateHasChanged(); // Обновить UI после скрытия ошибки
     }
 
 }

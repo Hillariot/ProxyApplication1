@@ -8,7 +8,7 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
-    <PackageIdentityName>com.companyname.vpnapplication1</PackageIdentityName>
+    <PackageIdentityName>Hillariot.BarbarisVPN</PackageIdentityName>
     <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
     <IntermediateOutputPath>C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
@@ -18,10 +18,10 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>E0ABC3163B352F00BF92D53B8ACF5C9D5BB883AD30B945445EB10F66902FB53B</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>com.companyname.vpnapplication1_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>com.companyname.vpnapplication1_9zz4h110yvjzm!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>com.companyname.vpnapplication1</RegisteredPackageID>
+    <RegisteredManifestChecksum>C4AB891B068386EC448AE3DF761EAF5354A65D2078D9B758F785C267CF6DCED1</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Hillariot.BarbarisVPN_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>Hillariot.BarbarisVPN_9zz4h110yvjzm!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>Hillariot.BarbarisVPN</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=User Name</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.1</RegisteredVersion>
   </PropertyGroup>
@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-05-08T14:36:50.952</Modified>
+      <Modified>2025-05-11T12:58:33.929</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-05-08T14:36:50.297</Modified>
+      <Modified>2025-05-09T18:48:04.965</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\vpnApplication1.runtimeconfig.json">
-      <PackagePath>vpnApplication1.runtimeconfig.json</PackagePath>
-      <Modified>2025-05-08T12:50:40.618</Modified>
+    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BarbarisVPN.runtimeconfig.json">
+      <PackagePath>BarbarisVPN.runtimeconfig.json</PackagePath>
+      <Modified>2025-05-09T18:00:41.907</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\vpnApplication1.dll">
-      <PackagePath>vpnApplication1.dll</PackagePath>
-      <Modified>2025-05-08T14:36:47.764</Modified>
+    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BarbarisVPN.dll">
+      <PackagePath>BarbarisVPN.dll</PackagePath>
+      <Modified>2025-05-11T12:58:31.935</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
-      <PackagePath>vpnApplication1.exe</PackagePath>
-      <Modified>2025-05-08T14:36:47.875</Modified>
+      <PackagePath>BarbarisVPN.exe</PackagePath>
+      <Modified>2025-05-11T12:58:32.042</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -55,7 +55,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\wwwroot\css\app.css">
       <PackagePath>wwwroot\css\app.css</PackagePath>
-      <Modified>2025-05-08T11:14:35.245</Modified>
+      <Modified>2025-05-09T22:16:13.180</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\wwwroot\css\bootstrap\bootstrap.min.css">
       <PackagePath>wwwroot\css\bootstrap\bootstrap.min.css</PackagePath>
@@ -305,9 +305,9 @@
       <PackagePath>uniqueappicon.scale-100.png</PackagePath>
       <Modified>2025-05-08T12:22:56.238</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\vpnApplication1.deps.json">
-      <PackagePath>vpnApplication1.deps.json</PackagePath>
-      <Modified>2025-05-08T14:36:49.618</Modified>
+    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\BarbarisVPN.deps.json">
+      <PackagePath>BarbarisVPN.deps.json</PackagePath>
+      <Modified>2025-05-09T18:43:26.487</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -673,13 +673,13 @@
       <PackagePath>Microsoft.Maui.pri</PackagePath>
       <Modified>2024-08-26T17:04:06.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\bundle\vpnApplication1.styles.css">
-      <PackagePath>wwwroot\vpnApplication1.styles.css</PackagePath>
-      <Modified>2025-05-07T20:37:32.477</Modified>
+    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\bundle\BarbarisVPN.styles.css">
+      <PackagePath>wwwroot\BarbarisVPN.styles.css</PackagePath>
+      <Modified>2025-05-09T17:55:40.996</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\vpnApplication1.bundle.scp.css">
-      <PackagePath>wwwroot\vpnApplication1.bundle.scp.css</PackagePath>
-      <Modified>2025-05-07T20:37:32.503</Modified>
+    <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\BarbarisVPN.bundle.scp.css">
+      <PackagePath>wwwroot\BarbarisVPN.bundle.scp.css</PackagePath>
+      <Modified>2025-05-09T17:55:40.998</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\PC\Documents\GitHub\VPN_Application\VPN_Application\vpnApplication1\Components\Layout\MainLayout.razor.css">
       <PackagePath>Components\Layout\MainLayout.razor.css</PackagePath>

@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:vpnApplication1"
              x:Class="vpnApplication1.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type local:Components.Routes}" />

@@ -1,15 +1,15 @@
 {
   "Version": 1,
-  "Hash": "s/19f/w8dKX0R9Zv5W8/8A4mCfOLKFU32m+omkADSzM=",
-  "Source": "vpnApplication1",
+  "Hash": "OBYmQ0RmeaPY5JUMUQhL6uDgTb+mOmB9ywnKESC6804=",
+  "Source": "BarbarisVPN",
   "BasePath": "/",
   "Mode": "Root",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "vpnApplication1\\wwwroot",
-      "Source": "vpnApplication1",
+      "Name": "BarbarisVPN\\wwwroot",
+      "Source": "BarbarisVPN",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
       "Pattern": "**"
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css",
-      "SourceId": "vpnApplication1",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\BarbarisVPN.styles.css",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\",
       "BasePath": "/",
-      "RelativePath": "vpnApplication1.styles.css",
+      "RelativePath": "BarbarisVPN.styles.css",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\vpnApplication1.styles.css"
+      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\bundle\\BarbarisVPN.styles.css"
     },
     {
-      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css",
-      "SourceId": "vpnApplication1",
+      "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\BarbarisVPN.bundle.scp.css",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\",
       "BasePath": "/",
-      "RelativePath": "vpnApplication1.bundle.scp.css",
+      "RelativePath": "BarbarisVPN.bundle.scp.css",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Primary",
@@ -52,11 +52,11 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\vpnApplication1.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-android34.0\\scopedcss\\projectbundle\\BarbarisVPN.bundle.scp.css"
     },
     {
       "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
-      "SourceId": "vpnApplication1",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
@@ -75,7 +75,7 @@
     },
     {
       "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-      "SourceId": "vpnApplication1",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
@@ -94,7 +94,7 @@
     },
     {
       "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
-      "SourceId": "vpnApplication1",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
@@ -113,7 +113,7 @@
     },
     {
       "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\favicon.png",
-      "SourceId": "vpnApplication1",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",
@@ -132,7 +132,7 @@
     },
     {
       "Identity": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\index.html",
-      "SourceId": "vpnApplication1",
+      "SourceId": "BarbarisVPN",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\",
       "BasePath": "/",

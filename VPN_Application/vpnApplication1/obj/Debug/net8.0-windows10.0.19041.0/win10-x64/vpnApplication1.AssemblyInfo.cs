@@ -11,16 +11,16 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.companyname.vpnapplication1")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "Hillariot.BarbarisVPN")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PublisherName", "User Name")]
-[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Name", "vpnApplication1")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Name", "BarbarisVPN")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Version", "1.0.0.1")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("vpnApplication1")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("BarbarisVPN")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c142b43de9aba8a344eb0bd981d43e6a56833710")]
-[assembly: System.Reflection.AssemblyProductAttribute("vpnApplication1")]
-[assembly: System.Reflection.AssemblyTitleAttribute("vpnApplication1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+f779f5f5b0713aafd030c5510a83ac35940903c5")]
+[assembly: System.Reflection.AssemblyProductAttribute("BarbarisVPN")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BarbarisVPN")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows10.0.19041.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows10.0.17763.0")]

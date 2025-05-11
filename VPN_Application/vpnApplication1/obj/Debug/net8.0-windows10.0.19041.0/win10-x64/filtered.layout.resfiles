@@ -58,8 +58,8 @@ splashSplashScreen.scale-125.png
 splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
-wwwroot\vpnApplication1.styles.css
-wwwroot\vpnApplication1.bundle.scp.css
+wwwroot\BarbarisVPN.styles.css
+wwwroot\BarbarisVPN.bundle.scp.css
 AboutAssets.txt
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css

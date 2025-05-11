@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|c:\\users\\pc\\documents\\github\\vpn_application\\vpn_application\\vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|c:\\users\\pc\\documents\\github\\vpn_application\\vpn_application\\vpnapplication1\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|c:\\users\\pc\\documents\\github\\vpn_application\\vpn_application\\vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|c:\\users\\pc\\documents\\github\\vpn_application\\vpn_application\\vpnapplication1\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|c:\\users\\pc\\documents\\github\\vpn_application\\vpn_application\\vpnapplication1\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EA7ECC7C-55D2-4AB5-BDA3-FD02AE9F1656}|vpnApplication1\\vpnApplication1.csproj|solutionrelative:vpnapplication1\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +38,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "vpnApplication1\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-09T19:07:04.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "vpnApplication1\\Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "vpnApplication1\\Components\\Pages\\Home.razor",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-08T13:02:52.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T19:06:18.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
+              "RelativeDocumentMoniker": "vpnApplication1\\wwwroot\\css\\app.css",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
+              "RelativeToolTip": "vpnApplication1\\wwwroot\\css\\app.css",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAwwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-09T19:05:00.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\MauiProgram.cs",
               "RelativeDocumentMoniker": "vpnApplication1\\MauiProgram.cs",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\MauiProgram.cs",
               "RelativeToolTip": "vpnApplication1\\MauiProgram.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAAAiwPYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAADgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T10:33:54.098Z",
+              "WhenOpened": "2025-05-09T18:51:10.24Z",
               "EditorCaption": ""
             }
           ]
