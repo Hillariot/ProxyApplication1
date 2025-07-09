@@ -1,28 +1,32 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\BarbarisVPN.styles.css",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\BarbarisVPN.styles.css",
       "PackagePath": "staticwebassets\\BarbarisVPN.styles.css"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\favicon.png",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\GitHub\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\index.html",
+      "Id": "E:\\Users\\12345\\source\\repos\\Hillariot\\VPN_Application\\VPN_Application\\vpnApplication1\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.BarbarisVPN.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.BarbarisVPN.Microsoft.AspNetCore.StaticWebAssets.props",
