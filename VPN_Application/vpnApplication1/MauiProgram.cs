@@ -28,7 +28,7 @@ namespace vpnApplication1
             var content = JsonContent.Create(new { email, password });
             try
             {
-                var response = await _httpClient.PostAsync("http://185.184.122.74:5001/auth_reg", content);
+                var response = await _httpClient.PostAsync("http://185.184.122.25:5001/auth_reg", content);
                 var json = await response.Content.ReadAsStringAsync();
 
                 if (json.Contains("\"success\":true"))
@@ -51,7 +51,7 @@ namespace vpnApplication1
             var content = JsonContent.Create(new { email, password });
             try
             {
-                var response = await _httpClient.PostAsync("http://185.184.122.74:5000/auth_auth", content);
+                var response = await _httpClient.PostAsync("http://185.184.122.25:5000/auth_auth", content);
                 var json = await response.Content.ReadAsStringAsync();
 
                 if (json.Contains("\"success\":true"))
