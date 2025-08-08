@@ -79,7 +79,21 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Remove="config.json" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="Resources\Images\favicon - Копировать.png" />
+      <None Remove="sing-box.exe" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="sing-box.exe">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
 
