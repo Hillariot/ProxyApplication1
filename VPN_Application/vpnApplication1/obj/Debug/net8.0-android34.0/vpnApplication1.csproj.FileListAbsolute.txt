@@ -1094,3 +1094,4 @@ E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplica
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-android34.0\android\marshal_methods.x86_64.o
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-android34.0\android\jni_remap.x86_64.o
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-android34.0\app_shared_libraries\x86_64\libxamarin-app.so
+E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-android34.0\vpnApplication1.sourcelink.json

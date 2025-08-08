@@ -74,42 +74,40 @@
         </article>
     </main>
 
-    <!-- Кнопка справки -->
-    <button class="help-toggle" @onclick="ToggleHelpBox">?</button>
+    <!-- Кнопка справки (теперь ссылка) -->
+    <a href="https://barbarisvpn.online/help" target="_blank" class="help-toggle">?</a>
 
-    <!-- Окно справки -->
-    @if (showHelp)
-    {
-        <style>
-            .fixed-help-box {
-                font-size: 15px;
+    <style>
+        .help-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.2s, transform 0.1s;
+            user-select: none;
+        }
+
+            .help-toggle:hover {
+                background-color: #0056b3;
+                transform: scale(1.05);
             }
 
-                .fixed-help-box h4 {
-                    font-size: 20px;
-                }
-
-                .fixed-help-box strong {
-                    font-size: 16px;
-                }
-        </style>
-
-        <div class="fixed-help-box">
-            <h4>Справка</h4>
-            <p>
-                <strong>BarbarisVPN — подключение в 1 клик!</strong><br /><br />
-
-                1️⃣ Войдите или зарегистрируйтесь.<br />
-                2️⃣ Подтвердите почту и оплатите клиент.<br />
-                3️⃣ Подключайтесь к VPN.<br /><br />
-
-                ❓ Вопросы: <a href="mailto:hillariot2070@gmail.com">hillariot2070@gmail.com</a>
-            </p>
-        </div>
+            .help-toggle:active {
+                transform: scale(0.95);
+            }
+    </style>
 
 
 
-    }
 </div>
 
 @code {

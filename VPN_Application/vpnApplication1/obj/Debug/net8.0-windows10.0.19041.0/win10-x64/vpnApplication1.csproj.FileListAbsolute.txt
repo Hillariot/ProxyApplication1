@@ -218,3 +218,4 @@ E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplica
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\config.json
 E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\sing-box.exe
+E:\Users\12345\source\repos\Hillariot\VPN_Application\VPN_Application\vpnApplication1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\vpnApplication1.sourcelink.json
