@@ -74,37 +74,99 @@
         </article>
     </main>
 
-    <!-- Кнопка справки (теперь ссылка) -->
-    <a href="https://barbarisvpn.online/help" target="_blank" class="help-toggle">?</a>
+    <div class="button-group-fixed">
+        <!-- Справка -->
+        <a href="https://barbarisvpn.online/help" target="_blank" class="btn btn--circle" aria-label="Справка">?</a>
+
+        <!-- Оплата -->
+        <a href="https://barbarisvpn.online/profilePay" target="_blank" class="btn btn--primary">Оплата</a>
+    </div>
 
     <style>
-        .help-toggle {
+        :root {
+            --btn-bg: #0d6efd;
+            --btn-bg-hover: #0b5ed7;
+            --btn-text: #fff;
+            --btn-shadow: 0 4px 10px rgba(13,110,253,.25);
+            --btn-shadow-hover: 0 8px 18px rgba(13,110,253,.28);
+        }
+
+        /* Фиксированное расположение внизу слева */
+        .button-group-fixed {
+            position: fixed;
+            bottom: 20px; /* отступ от низа окна */
+            left: 20px; /* отступ от левого края */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000; /* чтобы не перекрывалось другими элементами */
+        }
+
+        /* Общий стиль для кнопок */
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
+            height: 36px;
+            padding: 0 14px;
+            border-radius: 9999px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            font-weight: 600;
+            font-size: 14px;
             text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            transition: background-color 0.2s, transform 0.1s;
             user-select: none;
+            box-shadow: var(--btn-shadow);
+            transition: background-color .15s ease, box-shadow .15s ease, transform .08s ease;
         }
 
-            .help-toggle:hover {
-                background-color: #0056b3;
-                transform: scale(1.05);
-            }
+        /* Круглая кнопка */
+        .btn--circle {
+            width: 36px;
+            padding: 0;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 700;
+        }
 
-            .help-toggle:active {
-                transform: scale(0.95);
-            }
+        /* Кнопка «Оплата» */
+        .btn--primary {
+            min-width: 96px;
+            padding: 0 16px;
+            white-space: nowrap;
+        }
+
+        /* Hover / active */
+        .btn:hover {
+            background: var(--btn-bg-hover);
+            box-shadow: var(--btn-shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0,0,0,.18);
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13,110,253,.35), var(--btn-shadow);
+        }
+
+        /* Исправление для Razor @@media */
+        @@media (prefers-reduced-motion: reduce) {
+            .btn
+
+        {
+            transition: none;
+        }
+
+        }
     </style>
+
+
+
+
 
 
 

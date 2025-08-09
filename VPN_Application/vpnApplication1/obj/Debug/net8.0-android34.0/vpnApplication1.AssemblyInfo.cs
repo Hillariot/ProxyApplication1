@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BarbarisVPN")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+783a5ac2da3ecc381bb62ace3f07ee73fbc9e1e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d1f1c50285a0c5ddd74a8a25dd1bbf715491adb1")]
 [assembly: System.Reflection.AssemblyProductAttribute("BarbarisVPN")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BarbarisVPN")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
