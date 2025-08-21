@@ -1,188 +1,131 @@
 ﻿@page "/"
-@inject AuthService Auth
-@inject VpnService Vpn
-@inject NetworkSpeedService SpeedService
-
+@inherits vpnApplication1.Home
 
 <h1 class="text-center" style="user-select: none">Barbaris VPN</h1>
 
-<div class="container mt-4 text-center">
+<div class="container auth-container mt-4 text-center">
 
     @if (!IsLoggedIn)
     {
-        <h4 style="user-select: none">Авторизация</h4>
-        <div class="mb-2">
-            <input class="form-control w-50 mx-auto" placeholder="Email" @bind="Email" />
+        <h4 class="mb-4" style="user-select: none">Авторизация</h4>
+
+        <div class="mb-3">
+            <input class="form-control auth-input" placeholder="Email" @bind="Email" />
         </div>
-        <div class="mb-2">
-            <input class="form-control w-50 mx-auto" placeholder="Пароль" type="password" @bind="Password" />
+        <div class="mb-3">
+            <input class="form-control auth-input" placeholder="Пароль" type="password" @bind="Password" />
         </div>
 
         @if (IsRegistering)
         {
-            <div class="mb-2">
-                <input class="form-control w-50 mx-auto" placeholder="Повторите пароль" type="password" @bind="RepeatPassword" />
+            <div class="mb-3">
+                <input class="form-control auth-input" placeholder="Повторите пароль" type="password" @bind="RepeatPassword" />
             </div>
         }
 
-        <div class="d-flex justify-content-center gap-3 mt-3">
-            <button class="btn btn-primary" @onclick="HandleLoginOrRegister">
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
+            <button class="btn btn-primary flex-fill" @onclick="HandleLoginOrRegister">
                 @(IsRegistering ? "Зарегистрироваться" : "Войти")
             </button>
-            <button class="btn btn-secondary" @onclick="@(() => { IsRegistering = !IsRegistering; ErrorMessage = null; })">
+            <button class="btn btn-secondary flex-fill" @onclick="@(() => { IsRegistering = !IsRegistering; ErrorMessage = null; })">
                 @(IsRegistering ? "У меня есть аккаунт" : "Регистрация")
             </button>
         </div>
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3" role="alert">
+                @ErrorMessage
+            </div>
+        }
     }
     else
     {
         <div class="mt-4">
-            <h5>Скорость соединения:</h5>
-            <pre>@SpeedText</pre>
+            <h5>VPN:</h5>
+            <p>Состояние: @(IsRunning ? "включён" : "выключен")</p>
         </div>
 
-        <div class="d-flex justify-content-center gap-3 mt-4">
-            <button class="btn btn-success btn-lg" @onclick="ConnectToVpn">
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+            <button class="btn btn-success btn-lg flex-fill"
+                    @onclick="ConnectFromUi"
+                    disabled="@(IsBusy || IsRunning)">
                 Подключиться к VPN
             </button>
 
-            <button class="btn btn-danger btn-lg" @onclick="DisconnectVpn">
+            <button class="btn btn-danger btn-lg flex-fill"
+                    @onclick="DisconnectFromUi"
+                    disabled="@(IsBusy || !IsRunning)">
                 Отключиться от VPN
             </button>
         </div>
-        @if (!string.IsNullOrEmpty(ErrorMessage))
+
+        @if (!string.IsNullOrEmpty(LastError))
         {
-            <div class="alert alert-danger w-50 mx-auto mt-3" role="alert">
-                @ErrorMessage
+            <div class="alert alert-danger mt-3" role="alert">
+                @LastError
             </div>
         }
+
         <button @onclick="Logout" class="logout-fab">
             Выйти
         </button>
-
-        <style>
-            .logout-fab {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background-color: #e74c3c;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                padding: 12px 20px;
-                font-size: 16px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                cursor: pointer;
-                transition: background-color 0.3s ease, transform 0.2s ease;
-                z-index: 1000;
-            }
-
-                .logout-fab:hover {
-                    background-color: #c0392b;
-                    transform: scale(1.05);
-                }
-
-                .logout-fab:active {
-                    transform: scale(0.95);
-                }
-        </style>
-
     }
-    @if (!string.IsNullOrEmpty(ErrorMessage))
+
+    @if (!string.IsNullOrEmpty(ErrorToast))
     {
         <div class="position-fixed bottom-0 start-50 translate-middle-x mb-4">
             <label class="text-danger bg-opacity-75 bg-danger text-white p-2 rounded">
-                @ErrorMessage
+                @ErrorToast
             </label>
         </div>
     }
 </div>
 
-@code {
-    private string Email = "";
-    private string Password = "";
-    private string RepeatPassword = "";
-    private bool IsRegistering = false;
-    private bool IsLoggedIn = false;
-    private string SpeedText = "Загрузка...";
-    private System.Threading.Timer? speedTimer;
-
-    protected override void OnInitialized()
-    {
-        StartSpeedTimer();
+<style>
+    .auth-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0 15px;
     }
 
-    private void StartSpeedTimer()
-    {
-        speedTimer = new System.Threading.Timer(_ =>
-        {
-            SpeedText = SpeedService.GetNetworkSpeed();
-            InvokeAsync(StateHasChanged);
-        }, null, 0, 1000);
+    .auth-input {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
     }
 
-    public void Dispose()
-    {
-        speedTimer?.Dispose();
+    .logout-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: background-color .3s ease, transform .2s ease;
+        z-index: 1000;
     }
 
-
-        void Logout()
-        {
-            // Очистить данные
-            IsLoggedIn = false;
-            Email = "";
-            Password = "";
-            RepeatPassword = "";
-            IsRegistering = false;
-            ErrorMessage = null;
+        .logout-fab:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
         }
 
+        .logout-fab:active {
+            transform: scale(0.95);
+        }
+    /* Кнопки на мобильных — во всю ширину */
+    @@media (max-width: 576px) {
+        .flex-fill
 
-
-    private async Task HandleLoginOrRegister()
     {
-        ErrorMessage = null;
-        AuthResult result = IsRegistering
-            ? await Auth.RegisterAsync(Email, Password, RepeatPassword)
-            : await Auth.LoginAsync(Email, Password);
-
-if (result.Success)
-{
-            IsLoggedIn = true;
-}
-else
-{
-    // Показываем ошибку пользователю
-            await ShowError(result.ErrorMessage);
-}
-
-
+        flex: 1 1 100%;
     }
 
-    private async Task ConnectToVpn()
-    {
-        var result = await Vpn.ConnectAsync();
-        if (!result)
-            await ShowError("Не удалось подключиться к VPN.");
     }
-
-    private async Task DisconnectVpn()
-    {
-        await Vpn.DisconnectAsync();
-    }
-
-    private string? ErrorMessage;
-
-    private async Task ShowError(string message)
-    {
-        ErrorMessage = message;
-        StateHasChanged(); // Обновление UI
-
-        // Подождать 8 секунд и убрать сообщение
-        await Task.Delay(8000);
-        ErrorMessage = null;
-        StateHasChanged(); // Обновить UI после скрытия ошибки
-    }
-
-}
+</style>

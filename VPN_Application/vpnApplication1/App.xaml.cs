@@ -1,14 +1,15 @@
-﻿namespace vpnApplication1
+﻿
+namespace vpnApplication1;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App(IAuthService auth)
     {
-        public App()
-        {
-            InitializeComponent();
+        InitializeComponent();
+        MainPage = new MainPage();
 
-            // Здесь сразу устанавливаем MainPage
-            MainPage = new MainPage();
+        // Асинхронную инициализацию можно не блокировать UI
+        _ = auth.InitializeAsync();
 
-        }
     }
 }

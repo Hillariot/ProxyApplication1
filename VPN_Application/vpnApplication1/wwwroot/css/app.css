@@ -1,5 +1,6 @@
 ﻿html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #010001 !important;
 }
 
 a, .btn-link {
@@ -85,9 +86,6 @@ h1:focus {
     }
     /* Стили для кнопки справки */
     .help-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
         background-color: #007bff;
         color: white;
         font-size: 24px;
@@ -99,11 +97,15 @@ h1:focus {
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease; /* плавное изменение цвета */
     }
 
         .help-button:hover {
             background-color: #0056b3;
+        }
+
+        .help-button:active {
+            background-color: #004a99; /* чуть темнее при нажатии */
         }
 
     .fixed-help-box {
@@ -140,11 +142,44 @@ h1:focus {
         top: 10px;
         right: 10px;
     }
-
+    /* Базовый статичный фон — на случай отключённой анимации */
     body {
+        min-height: 100vh;
+        margin: 0;
+        position: relative;
         background: linear-gradient(-45deg, #ed193b, #a98055, #f286e2, #681d7a);
-        background-size: 400% 400%;
-        animation: gradient 10s ease infinite;
+        background-attachment: fixed; /* меньше перерисовок при скролле */
     }
+        /* Анимированный слой поверх базового фона */
+        body::before {
+            content: "";
+            position: fixed; /* фиксируем к вьюпорту, не зависит от скролла */
+            inset: -15%; /* запас, чтобы не было краёв при сдвиге */
+            z-index: -1;
+            pointer-events: none;
+            /* тот же градиент, но просименьше масштаб */
+            background: linear-gradient(-45deg, #ed193b, #a98055, #f286e2, #681d7a);
+            background-size: 150% 150%;
+            /* только transform → уходит на композитор (GPU) */
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            /* медленная линейная анимация без скачков */
+            animation: pan 60s linear infinite;
+        }
+    /* Плавный “дрейф” текстуры (можно менять проценты и длительность) */
+    @keyframes pan {
+        0% {
+            transform: translate3d(0%, 0%, 0);
+        }
 
+        100% {
+            transform: translate3d(-20%, -20%, 0);
+        }
+    }
+    /* Уважение системной настройки “уменьшить анимацию” */
+    @media (prefers-reduced-motion: reduce) {
+        body::before {
+            animation: none; /* или, если хочется совсем слегка: animation: pan 240s linear infinite; */
+        }
+    }
 }

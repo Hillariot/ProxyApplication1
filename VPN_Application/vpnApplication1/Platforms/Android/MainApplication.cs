@@ -11,6 +11,6 @@ namespace vpnApplication1
         {
         }
 
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+        protected override MauiApp CreateMauiApp() => AuthTokens.CreateMauiApp();
     }
 }

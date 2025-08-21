@@ -4,8 +4,17 @@
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugFramework>net8.0-windows10.0.19041.0</ActiveDebugFramework>
     <ActiveDebugProfile>Windows Machine</ActiveDebugProfile>
-    <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
+    <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <DefaultDevice>pixel_5_-_api_33</DefaultDevice>
+    <Source>E:\Users\12345\Downloads\logo.png</Source>
+    <SmallTileSource>E:\Users\12345\Downloads\logo.png</SmallTileSource>
+    <MediumTileSource>E:\Users\12345\Downloads\logo.png</MediumTileSource>
+    <WideTileSource>E:\Users\12345\Downloads\logo.png</WideTileSource>
+    <LargeTileSource>E:\Users\12345\Downloads\logo.png</LargeTileSource>
+    <AppIconSource>E:\Users\12345\Downloads\logo.png</AppIconSource>
+    <SplashScreenSource>E:\Users\12345\Downloads\logo.png</SplashScreenSource>
+    <BadgeLogoSource>E:\Users\12345\Downloads\logo.png</BadgeLogoSource>
+    <PackageLogoSource>E:\Users\12345\Downloads\logo.png</PackageLogoSource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
@@ -13,14 +22,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">
+    <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
     <None Update="MainPage.xaml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="Platforms\Windows\App.xaml">
       <SubType>Designer</SubType>
     </None>
     <None Update="Platforms\Windows\Package.appxmanifest">

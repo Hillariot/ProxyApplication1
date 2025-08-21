@@ -14,22 +14,22 @@ namespace vpnApplication1.WinUI
             this.InitializeComponent();
         }
 
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+        protected override MauiApp CreateMauiApp() => AuthTokens.CreateMauiApp();
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             base.OnLaunched(args);
 
-            var window = Microsoft.Maui.Controls.Application.Current.Windows.FirstOrDefault();
-            if (window?.Handler?.PlatformView is Microsoft.UI.Xaml.Window nativeWindow)
+#if WINDOWS
+            var window = Application.Windows.FirstOrDefault()?.Handler.PlatformView as Microsoft.UI.Xaml.Window;
+            if (window != null)
             {
-                IntPtr hwnd = WindowNative.GetWindowHandle(nativeWindow);
-                var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
-                var appWindow = AppWindow.GetFromWindowId(windowId);
-
-                // Устанавливаем заголовок окна
-                appWindow.Title = "Barbaris VPN";
+                window.Closed += async (sender, e) =>
+                {
+                    await VpnCloser.StopSingBoxAsync();
+                };
             }
+#endif
         }
     }
 }
