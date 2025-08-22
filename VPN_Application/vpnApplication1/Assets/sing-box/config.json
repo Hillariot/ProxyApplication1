@@ -1,0 +1,122 @@
+{
+  "log": { "level": "info" },
+
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "local-socks",
+      "listen": "127.0.0.1",
+      "listen_port": 10808
+    },
+    {
+      "type": "http",
+      "tag": "xhttp-in",
+      "listen": "127.0.0.1",
+      "listen_port": 8080
+    }
+  ],
+
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "vpn",
+      "server": "185.184.122.74",
+      "server_port": 443,
+      "uuid": "72afd9d8-292c-40e3-8da8-a54796f41b14",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.cloudflare.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "D_z8RkDvnBLo_PZpjk3-yq0PZ-DZyJelzVQA7vUqwzY",
+          "short_id": "abcd1234"
+        }
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+
+  "dns": {
+    "strategy": "prefer_ipv4",
+    "independent_cache": true,
+    "cache_capacity": 512,
+    "servers": [
+      {
+        "tag": "cloudflare-doh",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "vpn"
+      },
+      {
+        "tag": "google-doh",
+        "address": "https://dns.google/dns-query",
+        "detour": "vpn",
+        "address_resolver": "cloudflare-doh"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": "ads",
+        "action": "reject"
+      } // ← DNS-запросы к рекламе режем на этапе резолва
+    ]
+  },
+
+  "route": {
+    "auto_detect_interface": false,
+    "final": "vpn",
+
+    "rule_set": [
+      {
+        "type": "local",
+        "tag": "ads",
+        "format": "binary",
+        "path": "/data/user/0/Company.Hillariot.BarbarisVPN/files/geosite-category-ads-all.srs"
+      }
+    ],
+
+    "rules": [
+      {
+        "inbound": "xhttp-in",
+        "outbound": "vpn"
+      },
+      {
+        "inbound": "local-socks",
+        "outbound": "vpn"
+      },
+
+      {
+        "protocol": "dns",
+        "outbound": "vpn"
+      },
+      {
+        "port": 53,
+        "network": "udp",
+        "outbound": "vpn"
+      },
+
+      {
+        "ip_cidr": [ "127.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "224.0.0.0/4", "::1/128", "fc00::/7", "fe80::/10" ],
+        "outbound": "direct"
+      },
+
+      {
+        "rule_set": "ads",
+        "outbound": "block"
+      } // ← если реклама всё-таки промаппилась — глушим трафик
+    ]
+  },
+
+  "experimental": { "cache_file": { "enabled": false } }
+}
