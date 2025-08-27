@@ -39,6 +39,10 @@ namespace vpnApplication1
             builder.Services.AddSingleton<VpnHelper>();
 #if ANDROID
             builder.Services.AddSingleton<MyVpnService>();
+                    Task.Run(async () =>
+        {
+            await CopyAssetToAppData("geosite-category-ads-all.srs");
+        });
 #endif
             builder.Services.AddSingleton<Services.INetworkSpeedService, NetworkSpeedService>(); // платформа подставится сама
 
@@ -74,7 +78,18 @@ namespace vpnApplication1
 
             return builder.Build();
         }
+        private static async Task CopyAssetToAppData(string fileName)
+        {
+            using var src = await FileSystem.OpenAppPackageFileAsync(fileName);
+            var dstPath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+            if (!File.Exists(dstPath))
+            {
+                using var dst = File.Create(dstPath);
+                await src.CopyToAsync(dst);
+            }
+        }
     }
+
     public class InAppBrowserService
     {
         public Task OpenAsync(string url) =>

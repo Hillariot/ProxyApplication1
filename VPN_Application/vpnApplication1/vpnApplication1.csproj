@@ -98,6 +98,7 @@
       <None Remove="Platforms\Android\Assets\sing-box\armeabi-v7a\sing-box" />
       <None Remove="Platforms\Android\jniLibs\arm64-v8a\libhev-socks5-tunnel.so" />
       <None Remove="Platforms\Android\jniLibs\armeabi-v7a\libhev-socks5-tunnel.so" />
+      <None Remove="Platforms\Windows\rules\geosite-category-ads-all.srs" />
       <None Remove="Resources\AppIcon\logo.png" />
       <None Remove="Resources\Images\favicon - Копировать.png" />
       <None Remove="sing-box.exe" />
@@ -115,6 +116,13 @@
 		<AndroidNativeLibrary Include="Platforms\Android\lib\arm64-v8a\libsingbox.so" LogicalName="sing-box/arm64-v8a/sing-box" />
 		<!-- конфиг -->
 		<AndroidAsset Include="Assets\sing-box\config.json" LogicalName="sing-box/config.json" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Content Include="Platforms\Windows\rules\geosite-category-ads-all.srs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
     <ItemGroup>
@@ -149,9 +157,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="VpnService_main - Копировать.cs">
-        <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-      </Compile>
       <Compile Update="VpnHelper.cs">
         <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
       </Compile>
