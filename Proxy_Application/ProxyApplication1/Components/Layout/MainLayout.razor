@@ -1,0 +1,179 @@
+﻿@inherits LayoutComponentBase
+
+<style>
+    .animated-gradient {
+        min-height: 100vh;
+        color: white;
+        background: linear-gradient(-45deg, #0a0f4a, #1a3b91, #2596d1, #80d0ff);
+        background-size: 10000% 10000%;
+        animation: gradientMove 60s ease infinite;
+    }
+
+    @@keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .content {
+        padding-top: 2rem;
+    }
+
+    .fixed-help-box h4 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 14px;
+    }
+
+
+    .help-toggle {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        width: 36px;
+        height: 36px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        border-radius: 10px; /* мягкие углы */
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .fixed-help-box {
+        position: fixed;
+        bottom: 56px;
+        left: 10px;
+        width: 360px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 15px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        font-size: 13px;
+        color: black;
+        z-index: 1000;
+        user-select: none;
+        border-radius: 10px; /* закругление окна справки */
+    }
+</style>
+
+<div class="animated-gradient">
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+
+    <div class="button-group-fixed">
+        <!-- Справка -->
+        <a href="https://barbarisvpn.online/help" target="_blank" class="btn btn--circle" aria-label="Справка">?</a>
+
+        <!-- Оплата -->
+        <a href="https://barbarisvpn.online/profilePay" target="_blank" class="btn btn--primary">Оплата</a>
+    </div>
+
+    <style>
+        :root {
+            --btn-bg: #0d6efd;
+            --btn-bg-hover: #0b5ed7;
+            --btn-text: #fff;
+            --btn-shadow: 0 4px 10px rgba(13,110,253,.25);
+            --btn-shadow-hover: 0 8px 18px rgba(13,110,253,.28);
+        }
+
+        /* Фиксированное расположение внизу слева */
+        .button-group-fixed {
+            position: fixed;
+            bottom: 20px; /* отступ от низа окна */
+            left: 20px; /* отступ от левого края */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000; /* чтобы не перекрывалось другими элементами */
+        }
+
+        /* Общий стиль для кнопок */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 36px;
+            padding: 0 14px;
+            border-radius: 9999px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            user-select: none;
+            box-shadow: var(--btn-shadow);
+            transition: background-color .15s ease, box-shadow .15s ease, transform .08s ease;
+        }
+
+        /* Круглая кнопка */
+        .btn--circle {
+            width: 36px;
+            padding: 0;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Кнопка «Оплата» */
+        .btn--primary {
+            min-width: 96px;
+            padding: 0 16px;
+            white-space: nowrap;
+        }
+
+        /* Hover / active */
+        .btn:hover {
+            background: var(--btn-bg-hover);
+            box-shadow: var(--btn-shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0,0,0,.18);
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13,110,253,.35), var(--btn-shadow);
+        }
+
+        /* Исправление для Razor @@media */
+        @@media (prefers-reduced-motion: reduce) {
+            .btn {
+                transition: none;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+</div>
+
+@code {
+    private bool showHelp = false;
+
+    private void ToggleHelpBox()
+    {
+        showHelp = !showHelp;
+    }
+}

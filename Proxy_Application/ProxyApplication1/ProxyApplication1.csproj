@@ -1,0 +1,178 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android34.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ProxyApplication1</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<ApplicationTitle>BarbarisVPN</ApplicationTitle>
+		<Title>BarbarisVPN</Title>
+		<AssemblyName>BarbarisVPN</AssemblyName>
+		<PackageId>BarbarisVPN</PackageId>
+		<PackageIcon>icon128.png</PackageIcon>
+
+		<!-- Android-specific -->
+		<ApplicationId Condition="'$(TargetFramework)'=='net8.0-android34.0'">com.hillariot.barbarisvpn</ApplicationId>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net8.0-android34.0'">24.0</SupportedOSPlatformVersion>
+
+		<!-- Windows-specific -->
+		<ApplicationId Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041.0'">Hillariot.BarbarisVPN</ApplicationId>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041.0'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041.0'">10.0.17763.0</TargetPlatformMinVersion>
+		<DefaultLanguage>ru</DefaultLanguage>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+	</PropertyGroup>
+
+    <ItemGroup>
+		
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\logo.svg" Color="#010001" BaseSize="240,240" />
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AndroidResource Remove="Assets\г\**" />
+      <AndroidResource Remove="Platforms\Android\libs\**" />
+      <Compile Remove="Assets\г\**" />
+      <Compile Remove="Platforms\Android\libs\**" />
+      <Content Remove="Assets\г\**" />
+      <Content Remove="Platforms\Android\libs\**" />
+      <EmbeddedResource Remove="Assets\г\**" />
+      <EmbeddedResource Remove="Platforms\Android\libs\**" />
+      <MauiCss Remove="Assets\г\**" />
+      <MauiCss Remove="Platforms\Android\libs\**" />
+      <MauiXaml Remove="Assets\г\**" />
+      <MauiXaml Remove="Platforms\Android\libs\**" />
+      <None Remove="Assets\г\**" />
+      <None Remove="Platforms\Android\libs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AndroidAsset Remove="Platforms\Android\Assets\sing-box\arm64-v8a\sing-box.exe" />
+      <AndroidAsset Remove="Platforms\Android\Assets\sing-box\armeabi-v7a\sing-box.exe" />
+    </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-android'">
+		<!-- Нативные библиотеки -->
+		<AndroidNativeLibrary Include="Platforms/Android/jniLibs/**" />
+		<!-- Ассеты (для config.json и др.) -->
+		<AndroidAsset Include="Platforms/Android/Assets/**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Include="Platforms\Android\Resources\drawable\ic_vpn_small.xml" />
+	</ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Assets\sing-box\config.json" />
+      <Content Remove="config.json" />
+      <Content Remove="Platforms\Android\Assets\config.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Remove="InAppBrowserPage.xaml" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="ic_vpn_small.xml" />
+      <None Remove="Platforms\Android\appicon_android.svg" />
+      <None Remove="Platforms\Android\Assets\sing-box\arm64-v8a\sing-box" />
+      <None Remove="Platforms\Android\Assets\sing-box\armeabi-v7a\sing-box" />
+      <None Remove="Platforms\Android\jniLibs\arm64-v8a\libhev-socks5-tunnel.so" />
+      <None Remove="Platforms\Android\jniLibs\armeabi-v7a\libhev-socks5-tunnel.so" />
+      <None Remove="Platforms\Windows\rules\geosite-category-ads-all.srs" />
+      <None Remove="Resources\AppIcon\logo.png" />
+      <None Remove="Resources\Images\favicon - Копировать.png" />
+      <None Remove="sing-box.exe" />
+    </ItemGroup>
+
+
+	<ItemGroup>
+		<!-- бинарник -->
+		<AndroidNativeLibrary Include="Platforms\Android\jniLibs\arm64-v8a\libhev-socks5-tunnel.so">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</AndroidNativeLibrary>
+		<AndroidNativeLibrary Include="Platforms\Android\jniLibs\armeabi-v7a\libhev-socks5-tunnel.so">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</AndroidNativeLibrary>
+		<AndroidNativeLibrary Include="Platforms\Android\lib\arm64-v8a\libsingbox.so" LogicalName="sing-box/arm64-v8a/sing-box" />
+		<!-- конфиг -->
+		<AndroidAsset Include="Assets\sing-box\config.json" LogicalName="sing-box/config.json" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Content Include="Platforms\Windows\rules\geosite-category-ads-all.srs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Platforms\Windows\config.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Platforms\Windows\sing-box.exe">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiIcon Include="Platforms\Android\appicon_android.svg" />
+      <MauiIcon Include="Resources\AppIcon\appicon.svg" />
+      <MauiIcon Include="Resources\AppIcon\logo.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\..\..\..\..\..\Downloads\icon128.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="InAppBrowserPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="Platforms\Windows\App.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Platforms\Windows\wintun.dll">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\appicon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

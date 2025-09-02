@@ -1,0 +1,138 @@
+﻿@page "/"
+@inherits ProxyApplication1.Home
+@inject ProxyApplication1.Services.INetworkSpeedService SpeedService
+
+<h1 class="text-center" style="user-select: none">Barbaris Proxy</h1>
+
+<div class="container auth-container mt-4 text-center">
+
+    @if (!IsLoggedIn)
+    {
+        <h4 class="mb-4" style="user-select: none">Авторизация</h4>
+
+        <div class="mb-3">
+            <input class="form-control auth-input" placeholder="Email" @bind="Email" />
+        </div>
+        <div class="mb-3">
+            <input class="form-control auth-input" placeholder="Пароль" type="password" @bind="Password" />
+        </div>
+
+        @if (IsRegistering)
+        {
+            <div class="mb-3">
+                <input class="form-control auth-input" placeholder="Повторите пароль" type="password" @bind="RepeatPassword" />
+            </div>
+        }
+
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
+            <button class="btn btn-primary flex-fill" @onclick="HandleLoginOrRegister">
+                @(IsRegistering ? "Зарегистрироваться" : "Войти")
+            </button>
+            <button class="btn btn-secondary flex-fill" @onclick="@(() => { IsRegistering = !IsRegistering; ErrorMessage = null; })">
+                @(IsRegistering ? "У меня есть аккаунт" : "Регистрация")
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3" role="alert">
+                @ErrorMessage
+            </div>
+        }
+    }
+    else
+    {
+        <div class="mt-4">
+            <h5>Proxy:</h5>
+            <p>Состояние: @(IsRunning ? "включён" : "выключен")</p>
+            @* Новая строка со скоростью *@
+            @if (IsRunning)
+            {
+                <p>Скорость: @SpeedText</p>
+            }
+        </div>
+
+
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+            <button class="btn btn-success btn-lg flex-fill"
+                    @onclick="ConnectFromUi"
+                    disabled="@(IsBusy || IsRunning)">
+                Подключиться к Proxy
+            </button>
+
+            <button class="btn btn-danger btn-lg flex-fill"
+                    @onclick="DisconnectFromUi"
+                    disabled="@(IsBusy || !IsRunning)">
+                Отключиться от Proxy
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(LastError))
+        {
+            <div class="alert alert-danger mt-3" role="alert">
+                @LastError
+            </div>
+        }
+
+        <button @onclick="Logout" class="logout-fab">
+            Выйти
+        </button>
+    }
+
+    @if (!string.IsNullOrEmpty(ErrorToast))
+    {
+        <div class="position-fixed bottom-0 start-50 translate-middle-x mb-4">
+            <label class="text-danger bg-opacity-75 bg-danger text-white p-2 rounded">
+                @ErrorToast
+            </label>
+        </div>
+    }
+</div>
+
+<style>
+    .auth-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .auth-input {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .logout-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: background-color .3s ease, transform .2s ease;
+        z-index: 1000;
+    }
+
+        .logout-fab:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .logout-fab:active {
+            transform: scale(0.95);
+        }
+    /* Кнопки на мобильных — во всю ширину */
+    @@media (max-width: 576px) {
+        .flex-fill
+
+    {
+        flex: 1 1 100%;
+    }
+
+    }
+</style>

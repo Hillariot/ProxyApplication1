@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>ProxyApplication1</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+
+<body style="background:#010001">
+    <script>
+        document.addEventListener('click', function (e) {
+            const a = e.target.closest('a[href]');
+            if (!a) return;
+
+            const url = new URL(a.href, document.baseURI);
+            const isExternal = url.origin !== location.origin;
+            if (!isExternal) return;
+
+            e.preventDefault();
+
+            // Запомним предыдущий адрес страницы, чтобы потом на него вернуться
+            const prev = encodeURIComponent(location.href);
+            const target = '/open-external?url=' + encodeURIComponent(url.href) + '&prev=' + prev;
+
+            (window.Blazor?.navigateTo ?? (u => location.href = u))(target);
+        }, true);
+    </script>
+
+
+
+
+
+    <div class="status-bar-safe-area"></div>
+
+    <div id="app"></div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+
+</body>
+
+</html>

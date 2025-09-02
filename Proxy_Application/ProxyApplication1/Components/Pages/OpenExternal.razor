@@ -1,0 +1,40 @@
+﻿@page "/open-external"
+@inject NavigationManager Nav
+@inject InAppBrowserService Browser
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        var url = GetQueryParam(Nav.Uri, "url");
+        var prev = GetQueryParam(Nav.Uri, "prev");
+
+        if (!string.IsNullOrWhiteSpace(url))
+        {
+            await Browser.OpenAsync(url!);
+
+            // Возвращаемся на предыдущую страницу и ЗАМЕНЯЕМ текущую запись (/open-external)
+            if (!string.IsNullOrWhiteSpace(prev))
+                Nav.NavigateTo(prev!, replace: true);
+            else
+                Nav.NavigateTo("/", replace: true); // запасной вариант
+        }
+    }
+
+    private static string? GetQueryParam(string absoluteUrl, string key)
+    {
+        var uri = new Uri(absoluteUrl);
+        var q = uri.Query;
+        if (string.IsNullOrEmpty(q)) return null;
+        if (q.StartsWith("?")) q = q[1..];
+
+        foreach (var part in q.Split('&', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var kv = part.Split('=', 2);
+            if (Uri.UnescapeDataString(kv[0]).Equals(key, StringComparison.OrdinalIgnoreCase))
+                return kv.Length > 1 ? Uri.UnescapeDataString(kv[1]) : "";
+        }
+        return null;
+    }
+}

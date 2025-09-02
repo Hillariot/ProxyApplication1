@@ -1,0 +1,189 @@
+{
+  "log": {
+    "level": "debug",
+    "timestamp": true,
+    "output": "CONSOLE"
+  },
+
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "BarbarisProxy2",
+      "address": [ "10.0.0.2/24" ],
+      "mtu": 1380,
+      "stack": "gvisor",
+      "auto_route": true,
+      "strict_route": false,
+      "sniff": true
+    },
+    {
+      "type": "http",
+      "tag": "xhttp-in",
+      "listen": "127.0.0.1",
+      "listen_port": 8080,
+      "sniff": true
+    },
+    {
+      "type": "socks",
+      "tag": "xsocks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080,
+      "sniff": true
+    }
+  ],
+
+  "dns": {
+    "strategy": "prefer_ipv4",
+    "reverse_mapping": true,
+    "independent_cache": true,
+    "cache_capacity": 1024,
+    "servers": [
+      {
+        "type": "local",
+        "tag": "dns-local"
+      },
+      {
+        "type": "https",
+        "tag": "cloudflare-doh",
+        "server": "cloudflare-dns.com",
+        "path": "/dns-query",
+        "domain_resolver": "dns-local",
+        "detour": "vpn",
+        "tls": { "enabled": true }
+      },
+      {
+        "type": "https",
+        "tag": "google-doh",
+        "server": "dns.google",
+        "path": "/dns-query",
+        "domain_resolver": "dns-local",
+        "detour": "vpn",
+        "tls": { "enabled": true }
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns-fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "server": "dns-fakeip"
+      },
+      {
+        "domain_suffix": [ "lan", "local", "localdomain", "home.arpa" ],
+        "action": "route",
+        "server": "dns-local"
+      }
+    ]
+  },
+
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "vpn",
+      "server": "64.188.92.202",
+      "server_port": 443,
+      "uuid": "72afd9d8-292c-40e3-8da8-a54796f41b14",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.cloudflare.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "D_z8RkDvnBLo_PZpjk3-yq0PZ-DZyJelzVQA7vUqwzY",
+          "short_id": "abcd1234"
+        }
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+
+  "route": {
+    "auto_detect_interface": true,
+    "final": "vpn",
+
+    "rule_set": [
+      {
+        "type": "local",
+        "tag": "ads",
+        "format": "binary",
+        "path": "rules/geosite-category-ads-all.srs"
+      }
+    ],
+
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "outbound": "vpn"
+      },
+      {
+        "inbound": "xhttp-in",
+        "outbound": "vpn"
+      },
+      {
+        "inbound": "xsocks-in",
+        "outbound": "vpn"
+      },
+
+      {
+        "protocol": "dns",
+        "outbound": "vpn"
+      },
+      {
+        "port": 53,
+        "network": "udp",
+        "outbound": "vpn"
+      },
+
+      {
+        "domain_suffix": [
+          "microsoft.com",
+          "windowsupdate.com",
+          "msftconnecttest.com",
+          "msftncsi.com",
+          "office.com",
+          "cdn.office.net",
+          "live.com",
+          "skype.com"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "domain_suffix": [ "lan", "local", "localdomain", "home.arpa" ],
+        "outbound": "direct"
+      },
+      {
+        "ip_cidr": [
+          "127.0.0.0/8",
+          "172.16.0.0/12",
+          "192.168.0.0/16",
+          "224.0.0.0/4",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outbound": "direct"
+      },
+
+      {
+        "rule_set": "ads",
+        "outbound": "block"
+      }
+    ]
+  }
+}

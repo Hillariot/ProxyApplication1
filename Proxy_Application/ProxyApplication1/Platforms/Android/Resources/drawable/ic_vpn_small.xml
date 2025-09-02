@@ -1,0 +1,29 @@
+﻿<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+android:viewportWidth="24.0"
+android:viewportHeight="24.0">
+
+	<!-- Уши — увеличенные -->
+	<path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5.0,5 L2.5,2.5 L2.3,7.0 Z"/>
+	<path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M19.0,5 L21.5,2.5 L21.7,7.0 Z"/>
+
+	<!-- Голова — чуть меньше круга -->
+	<path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="nonZero"
+        android:pathData="M12,4.5
+                          a7.5,7.5 0 1,0 0,15
+                          a7.5,7.5 0 1,0 0,-15z"/>
+
+	<!-- Щёчки/подбородок — легкий выступ снизу -->
+	<path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M7,16.8
+                          a5,3 0 0,0 10,0
+                          a7.5,3.5 0 0,1 -10,0 z"/>
+</vector>
