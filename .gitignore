@@ -24,3 +24,6 @@ VPN_Application/vpnApplication1/obj/Debug/net8.0-android34.0/lp/130/jl/res.zip
 VPN_Application/vpnApplication1/obj/Debug/net8.0-android34.0/android/assets/netstandard.dll
 /VPN_Application/vpnApplication1/obj
 /Proxy_Application/.vs
+/ProxyApplication1/.vs
+/ProxyApplication1/ProxyApplication1/obj
+/ProxyApplication1/ProxyApplication1/bin
