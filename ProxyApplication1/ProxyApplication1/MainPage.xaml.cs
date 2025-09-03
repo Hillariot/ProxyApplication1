@@ -1,5 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
+using System.Linq;               // FirstOrDefault
+using System.Net;
+using System.Threading.Tasks;    // Task
 
 namespace ProxyApplication1
 {
@@ -17,29 +20,53 @@ namespace ProxyApplication1
 
         public void ShowBrowser(string url)
         {
-            UrlLabel.Text = url;
             OverlayWebView.Source = url;
             BrowserOverlay.IsVisible = true;
 
+            _ = UpdateAddressBarAsync(url);      // не блокируем UI
+
 #if ANDROID
-            // Дадим фокус нативному WebView
+            // отдаём фокус нативному WebView, чтобы Back шёл в Activity
             Dispatcher.Dispatch(() =>
             {
-                if (OverlayWebView?.Handler?.PlatformView is Android.Webkit.WebView nativeWebView)
-                {
-                    nativeWebView.RequestFocus();
-                }
+                if (OverlayWebView?.Handler?.PlatformView is Android.Webkit.WebView native)
+                    native.RequestFocus();
             });
 #endif
         }
 
-        // Новый «единый» метод закрытия
+        private async Task UpdateAddressBarAsync(string url)
+        {
+            try
+            {
+                var uri = new Uri(url);
+                var host = uri.Host;
+                var https = string.Equals(uri.Scheme, "https", StringComparison.OrdinalIgnoreCase);
+
+                SecureIcon.Text = https ? "🔒" : "🌐";
+                HostLabel.Text = host;
+
+
+                    var addrs = await Dns.GetHostAddressesAsync(host);
+                    var ip = addrs.FirstOrDefault(a => a.AddressFamily ==
+                                 System.Net.Sockets.AddressFamily.InterNetwork)
+                             ?? addrs.FirstOrDefault();
+            }
+            catch
+            {
+                SecureIcon.Text = "🌐";
+                HostLabel.Text = "неизвестно";
+            }
+        }
+
+        // Единый метод закрытия
         public void CloseBrowserFromAnySource()
         {
             BrowserOverlay.IsVisible = false;
+            OverlayWebView.Source = null;
         }
 
-        // Обёртка для совместимости со старым кодом
+        // Обёртка для совместимости
         public void HideBrowser() => CloseBrowserFromAnySource();
 
         private void OnCloseBrowserClicked(object sender, EventArgs e) => CloseBrowserFromAnySource();
@@ -52,6 +79,18 @@ namespace ProxyApplication1
                 return true;
             }
             return base.OnBackButtonPressed();
+        }
+
+        // Копирование IP в буфер
+        private async void OnCopyIpClicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(HostLabel?.Text))
+            {
+                await Clipboard.SetTextAsync(HostLabel.Text);
+#if ANDROID || IOS
+                await DisplayAlert("", "Домен скопирован", "OK");
+#endif
+            }
         }
     }
 }

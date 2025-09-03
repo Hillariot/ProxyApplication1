@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using ProxyApplication1.Services;
 
-
 #if ANDROID
 using Android.App;
 using Android.OS;
@@ -16,17 +15,23 @@ using Android.Content;
 
 namespace ProxyApplication1;
 
-
 public partial class Home : ComponentBase
 {
     // --- DI ---
-    [Inject] protected IAuthService Auth { get; set; } = default!;
+    // Инжектим КОНКРЕТНЫЙ AuthService, чтобы вызывать перегрузки с rememberMe и SaveCurrentToStorageAsync()
+    [Inject] protected AuthService Auth { get; set; } = default!;
 
     // --- Auth UI state ---
     protected string Email = "";
     protected string Password = "";
     protected string RepeatPassword = "";
     protected bool IsRegistering = false;
+
+    // "Запомнить меня"
+    protected bool RememberMe { get; set; } = true;
+
+    // Показывать ли кнопку "Сохранить авторизацию" после входа без запоминания
+    protected bool ShowPersistButton => Auth.IsLoggedIn && !Auth.IsPersisted;
 
     protected string? ErrorMessage;   // блок под формой/панелью
     protected string? ErrorToast;     // всплывающий тост
@@ -38,6 +43,8 @@ public partial class Home : ComponentBase
     protected bool IsRunning { get; set; }
     protected bool IsBusy { get; set; }
     protected string? LastError { get; set; }
+    protected bool Persisted => Auth.IsPersisted;
+
 
     [Microsoft.AspNetCore.Components.Inject]
     public ProxyApplication1.Services.INetworkSpeedService? SpeedService { get; set; }
@@ -45,7 +52,7 @@ public partial class Home : ComponentBase
     protected string SpeedText { get; set; } = "—";
     private CancellationTokenSource? _speedCts;
 
-    // Запускаем/останавливаем опрос при изменении состояния
+    // ===== Скорость =====
     private void StartSpeedLoop()
     {
         StopSpeedLoop();
@@ -69,7 +76,7 @@ public partial class Home : ComponentBase
                     if (!string.Equals(text, last, StringComparison.Ordinal))
                     {
                         last = text;
-                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        await Microsoft.Maui.ApplicationModel.MainThread.InvokeOnMainThreadAsync(() =>
                         {
                             SpeedText = text ?? "—";
                             StateHasChanged();
@@ -79,7 +86,7 @@ public partial class Home : ComponentBase
                 catch (TaskCanceledException) { break; }
                 catch
                 {
-                    // Можно вывести "Ошибка чтения скорости" один раз
+                    // тихо игнорируем разовые ошибки
                 }
 
                 try { await Task.Delay(3000, token); }
@@ -88,16 +95,12 @@ public partial class Home : ComponentBase
         }, token);
     }
 
-
     private void StopSpeedLoop()
     {
         try { _speedCts?.Cancel(); } catch { /* ignore */ }
         _speedCts?.Dispose();
         _speedCts = null;
     }
-
-    // Вызови это место всякий раз, когда меняется IsLoggedIn/IsRunning.
-    // Например, после успешного ConnectFromUi/DisconnectFromUi и в OnAfterRenderAsync.
 
     private void ToggleSpeedLoopByState()
     {
@@ -143,7 +146,6 @@ public partial class Home : ComponentBase
     {
         try
         {
-            // Попробуем подключиться — если слушает localhost, соединение установится/отклонится быстро.
             using var client = new System.Net.Sockets.TcpClient();
             var t = client.ConnectAsync("127.0.0.1", port);
             return t.Wait(200);
@@ -274,19 +276,15 @@ public partial class Home : ComponentBase
 
         try
         {
-            // 1) Системное разрешение на Proxy
             var ok = await MainActivity.RequestProxyPermissionAsync().ConfigureAwait(false);
             if (!ok) { await ShowError("Доступ к Proxy отклонён пользователем."); return; }
 
-            // 2) Уже запущено?
             if (IsProxyRunningFlag()) { IsRunning = true; await SafeUIAsync(() => { }); return; }
 
-            // 3) Стартуем наш сервис с ACTION_START
             var startIntent = new Intent(Android.App.Application.Context!, typeof(ProxyApplication1.MyProxyService))
                 .SetAction(ProxyApplication1.MyProxyService.ACTION_START);
             StartForegroundServiceCompat(startIntent);
 
-            // 4) Ждём, пока сервис выставит KEY_RUNNING=true
             var up = await WaitForRunningAsync(expected: true, timeoutMs: 8000);
             IsRunning = up;
             if (!up) await ShowError("Proxy не удалось запустить (таймаут). Проверьте логи.");
@@ -307,13 +305,12 @@ public partial class Home : ComponentBase
 
         try
         {
-            var exe = GetWinSingBoxExePath();                 // путь к sing-box.exe
-            var cfg = GetWinConfigPath();                     // путь к config.json
-            ValidateWindowsPrereqsOrThrow(exe);               // проверим wintun.dll рядом с exe
+            var exe = GetWinSingBoxExePath();
+            var cfg = GetWinConfigPath();
+            ValidateWindowsPrereqsOrThrow(exe);
 
             var exeDir = Path.GetDirectoryName(exe)!;
 
-            // Имя TUN-интерфейса из конфига (по умолчанию — BarbarisProxy)
             string tunName = "BarbarisProxy";
             try
             {
@@ -332,23 +329,21 @@ public partial class Home : ComponentBase
                     }
                 }
             }
-            catch { /* игнор — оставим дефолтное имя */ }
+            catch { /* ignore */ }
 
-            // Стартуем БЕЗ cmd.exe, окно не показываем, с UAC-повышением
             var psi = new ProcessStartInfo
             {
                 FileName = exe,
                 Arguments = $"run -c \"{cfg}\" --disable-color",
-                UseShellExecute = true,                  // обязательно для Verb=runas
-                Verb = "runas",                          // UAC prompt
+                UseShellExecute = true,
+                Verb = "runas",
                 WorkingDirectory = exeDir,
-                WindowStyle = ProcessWindowStyle.Hidden, // скрыть окно
+                WindowStyle = ProcessWindowStyle.Hidden,
                 CreateNoWindow = true
             };
 
             var proc = Process.Start(psi) ?? throw new Exception("Не удалось стартовать (runas).");
 
-            // ждём убедительный сигнал (до 10 сек)
             var sw = Stopwatch.StartNew();
             bool ok = false;
             while (sw.Elapsed < TimeSpan.FromSeconds(10))
@@ -356,15 +351,10 @@ public partial class Home : ComponentBase
                 await Task.Delay(300);
 
                 if (proc.HasExited)
-                    break; // процесс реально упал
+                    break;
 
-                // 1. поднялся TUN?
                 if (IsInterfacePresent(tunName)) { ok = true; break; }
-
-                // 2. открылись порты?
                 if (IsPortOpenLocal(8080) || IsPortOpenLocal(1080)) { ok = true; break; }
-
-                // 3. живёт больше 2 секунд → считаем успешным стартом
                 if (sw.Elapsed > TimeSpan.FromSeconds(2)) { ok = true; break; }
             }
 
@@ -406,12 +396,10 @@ public partial class Home : ComponentBase
 
         try
         {
-            // отправляем ACTION_STOP в наш сервис
             var stopIntent = new Intent(Android.App.Application.Context!, typeof(ProxyApplication1.MyProxyService))
                 .SetAction(ProxyApplication1.MyProxyService.ACTION_STOP);
             Android.App.Application.Context!.StartService(stopIntent);
 
-            // ждём KEY_RUNNING=false
             var down = await WaitForRunningAsync(expected: false, timeoutMs: 6000);
             IsRunning = !down;
             if (!down) await ShowError("Proxy не удалось корректно остановить (таймаут).");
@@ -434,11 +422,11 @@ public partial class Home : ComponentBase
         {
             var kill = new ProcessStartInfo
             {
-                FileName = "taskkill.exe",                 // напрямую taskkill
+                FileName = "taskkill.exe",
                 Arguments = "/IM sing-box.exe /T /F",
                 UseShellExecute = true,
-                Verb = "runas",                            // запросит UAC при необходимости
-                WindowStyle = ProcessWindowStyle.Hidden,   // скрыть окно
+                Verb = "runas",
+                WindowStyle = ProcessWindowStyle.Hidden,
                 CreateNoWindow = true
             };
             Process.Start(kill);
@@ -482,11 +470,11 @@ public partial class Home : ComponentBase
                     return;
                 }
 
-                await Auth.RegisterAsync(Email, Password).ConfigureAwait(false);
+                await Auth.RegisterAsync(Email, Password, RememberMe).ConfigureAwait(false);
             }
             else
             {
-                await Auth.LoginAsync(Email, Password).ConfigureAwait(false);
+                await Auth.LoginAsync(Email, Password, RememberMe).ConfigureAwait(false);
             }
 
             // очистим форму
@@ -502,6 +490,21 @@ public partial class Home : ComponentBase
         }
     }
 
+    /// <summary>Кнопка "Сохранить авторизацию" — докладывает текущие токены в SecureStorage.</summary>
+    protected async Task PersistNow()
+    {
+        try
+        {
+            await Auth.SaveCurrentToStorageAsync();
+            await ShowToast("Авторизация сохранена");
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (Exception ex)
+        {
+            await ShowToast("Не удалось сохранить: " + ex.Message);
+        }
+    }
+
     protected async Task Logout()
     {
         // 1) выключим Proxy (не блокируй выход, если тут ошибки)
@@ -513,7 +516,7 @@ public partial class Home : ComponentBase
 
         try
         {
-            await Auth.LogoutAsync();       // чистит токены + MarkLoggedOut()
+            await Auth.LogoutAsync(); // чистит токены + IsPersisted=false
         }
         catch (Exception ex)
         {
@@ -529,7 +532,6 @@ public partial class Home : ComponentBase
         await InvokeAsync(StateHasChanged);
 
 #if ANDROID
-        // безопасно: пишем prefs в фоне, чтоб ничего не зависало
         try
         {
             var ctx = Android.App.Application.Context;
@@ -540,7 +542,7 @@ public partial class Home : ComponentBase
                 var ed = sp.Edit();
                 ed.PutBoolean("logged_in", false);
                 ed.PutBoolean(ProxyApplication1.MyProxyService.KEY_RUNNING, false);
-                ed.Commit();  // синхронно, но мы уже не на UI-потоке
+                ed.Commit();
             }).ConfigureAwait(false);
 
             Microsoft.Maui.ApplicationModel.MainThread.BeginInvokeOnMainThread(() =>
@@ -550,9 +552,6 @@ public partial class Home : ComponentBase
         }
         catch { /* не мешаем выходу */ }
 #endif
-
-        // 3) (опционально) перейти на экран логина/домашний
-        // await Shell.Current.GoToAsync("//");
     }
 
     // ===== Ошибки (тост) =====

@@ -18,11 +18,13 @@
         </BlazorWebView>
 
         <!-- Оверлей с WebView (по умолчанию скрыт) -->
+        <!-- Верхняя панель: кнопка слева, «чип» с доменом и IP, копировать -->
+        <!-- Оверлей браузера (важно: есть x:Name'ы, которые вы используете в .cs) -->
         <Grid x:Name="BrowserOverlay"
-              IsVisible="False"
-              BackgroundColor="#EE000000"
-              Padding="0"
-              InputTransparent="False">
+          IsVisible="False"
+          BackgroundColor="#EE000000"
+          Padding="0"
+          InputTransparent="False">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -30,26 +32,44 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Верхняя панель: кнопка слева, URL справа на всю ширину -->
+                <!-- Верхняя панель -->
                 <Grid Grid.Row="0"
-                      BackgroundColor="{DynamicResource PageBackgroundColor}"
-                      ColumnDefinitions="Auto,*"
-                      Padding="12,8">
+              BackgroundColor="{DynamicResource PageBackgroundColor}"
+              ColumnDefinitions="Auto,*,Auto"
+              Padding="10">
+
+                    <!-- Закрыть -->
                     <Button Grid.Column="0"
-                            Text="Закрыть"
-                            Clicked="OnCloseBrowserClicked"
-                            HorizontalOptions="Start" />
-                    <Label  Grid.Column="1"
-                            x:Name="UrlLabel"
-                            VerticalOptions="Center"
-                            HorizontalOptions="FillAndExpand"
-                            LineBreakMode="TailTruncation" />
+                  Text="Закрыть"
+                  Clicked="OnCloseBrowserClicked"
+                  HorizontalOptions="Start" />
+
+                    <!-- «Адресная строка» -->
+                    <Border Grid.Column="1"
+                  Padding="8,6"
+                  BackgroundColor="#3a2bb5"
+                  StrokeThickness="0"
+                  StrokeShape="RoundRectangle 12"
+                  Margin="10,0"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label x:Name="SecureIcon" Text="🌐" VerticalOptions="Center" />
+                            <Label x:Name="HostLabel" FontAttributes="Bold"
+                     VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Скопировать IP -->
+                    <Button Grid.Column="2"
+                  Text="Копировать IP"
+                  Clicked="OnCopyIpClicked"
+                  VerticalOptions="Center" />
                 </Grid>
 
-                <!-- Сам WebView на весь экран -->
+                <!-- Сам WebView -->
                 <WebView x:Name="OverlayWebView" Grid.Row="1" />
             </Grid>
         </Grid>
-
     </Grid>
 </ContentPage>
